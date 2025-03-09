@@ -6,7 +6,7 @@
 /*   By: abamksa <abamksa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/09 11:58:08 by abamksa           #+#    #+#             */
-/*   Updated: 2025/03/09 11:59:06 by abamksa          ###   ########.fr       */
+/*   Updated: 2025/03/09 12:29:32 by abamksa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,9 @@ PresidentialPardonForm & PresidentialPardonForm::operator=(PresidentialPardonFor
 PresidentialPardonForm::~PresidentialPardonForm() {}
 
 void PresidentialPardonForm::execute(Bureaucrat const & executor) const {
+	
+	if (executor.getGrade() > getGradeToExecute())
+		throw AForm::GradeTooLowException();
 	AForm::execute(executor);
 	std::cout << _target << " has been pardoned by Zafod Beeblebrox" << std::endl;
 }

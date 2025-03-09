@@ -6,7 +6,7 @@
 /*   By: abamksa <abamksa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/09 11:59:55 by abamksa           #+#    #+#             */
-/*   Updated: 2025/03/09 12:04:45 by abamksa          ###   ########.fr       */
+/*   Updated: 2025/03/09 12:30:09 by abamksa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,11 @@ RobotomyRequestForm &RobotomyRequestForm::operator=(const RobotomyRequestForm &t
 RobotomyRequestForm::~RobotomyRequestForm() {}
 
 void RobotomyRequestForm::execute(Bureaucrat const & executor) const {
-	AForm::execute(executor);
-	std::cout << "RobotomyRequestForm is executed" << std::endl;
+	if (executor.getGrade() > getGradeToExecute())
+		throw AForm::GradeTooLowException();
+
+	if (rand() % 2)
+		std::cout << _target << " has been robotomized successfully" << std::endl;
+	else
+		std::cout << _target << " robotomized failed" << std::endl;
 }
