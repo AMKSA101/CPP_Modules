@@ -6,7 +6,7 @@
 /*   By: abamksa <abamksa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/08 15:26:13 by abamksa           #+#    #+#             */
-/*   Updated: 2025/03/08 15:51:45 by abamksa          ###   ########.fr       */
+/*   Updated: 2025/03/09 12:06:50 by abamksa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,21 +16,23 @@
 #include <iostream>
 #include <string>
 #include <exception>
+#include <fstream>
 #include "Bureaucrat.hpp"
 
-class Form {
+class AForm {
 	private:
 		const std::string _name;
 		bool _signed;
 		const int _gradeToSign;
 		const int _gradeToExecute;
 	public:
-		Form();
-		Form(std::string name, int gradeToSign, int gradeToExecute);
-		Form(Form const &form);
-		Form &operator=(Form const &form);
-		~Form();
-		virtual std::string getName() const = 0;
+		AForm();
+		AForm(std::string name, int gradeToSign, int gradeToExecute);
+		AForm(AForm const &form);
+		AForm &operator=(AForm const &form);
+		~AForm();
+		std::string getName() const;
+		virtual void execute(Bureaucrat const &executor) const = 0;
 		bool getSigned() const;
 		int getGradeToSign() const;
 		int getGradeToExecute() const;
@@ -45,6 +47,6 @@ class Form {
 		};
 };
 
-std::ostream &operator<<(std::ostream &out, Form const &form);
+std::ostream &operator<<(std::ostream &out, AForm const &form);
 
 #endif
