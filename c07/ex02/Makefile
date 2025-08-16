@@ -1,9 +1,9 @@
 CXX = c++
 CXXFLAGS = -Wall -Wextra -Werror -fsanitize=address -std=c++98
-SRC = main.cpp Base.cpp
+SRC = main.cpp
 OBJ_DIR = obj
 OBJ = $(addprefix $(OBJ_DIR)/, $(SRC:.cpp=.o))
-Name = serializer
+Name = array
 
 all: $(Name)
 
