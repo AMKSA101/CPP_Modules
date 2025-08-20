@@ -6,7 +6,7 @@
 /*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 14:52:02 by user              #+#    #+#             */
-/*   Updated: 2025/08/19 17:10:16 by user             ###   ########.fr       */
+/*   Updated: 2025/08/20 11:08:46 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,6 @@ int Span::longestSpan() {
 	if (vect.size() < 2)
 		throw std::logic_error("Cannot calculate span with less than 2 elements");
 
-	std::vector<int>::iterator minElement = std::min_element(vect.begin(), vect.end());
-	std::vector<int>::iterator maxElement = std::max_element(vect.begin(), vect.end());
-	return (*maxElement - *minElement);
+	auto minmax = std::minmax_element(vect.begin(), vect.end());
+	return (*minmax.second - *minmax.first);
 }
